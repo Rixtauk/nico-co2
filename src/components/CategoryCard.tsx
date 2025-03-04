@@ -2,7 +2,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { CategoryInfo } from '@/types/calculatorTypes';
-import * as Icons from 'lucide-react';
+import * as LucideIcons from 'lucide-react';
 
 interface CategoryCardProps {
   category: CategoryInfo;
@@ -17,7 +17,7 @@ const CategoryCard = ({
   onClick, 
   className 
 }: CategoryCardProps) => {
-  const Icon = Icons[category.icon as keyof typeof Icons] || Icons.Circle;
+  const IconComponent = LucideIcons[category.icon as keyof typeof LucideIcons] || LucideIcons.Circle;
 
   return (
     <div 
@@ -42,7 +42,7 @@ const CategoryCard = ({
             "w-10 h-10 rounded-full flex items-center justify-center text-white",
             category.color
           )}>
-            <Icon size={20} />
+            <IconComponent size={20} />
           </div>
           <h3 className="ml-3 text-lg font-semibold">{category.title}</h3>
         </div>
@@ -52,7 +52,7 @@ const CategoryCard = ({
       
       {isSelected && (
         <div className="absolute bottom-3 right-3 text-eco-green">
-          <Icons.CheckCircle size={18} />
+          <LucideIcons.CheckCircle size={18} />
         </div>
       )}
     </div>

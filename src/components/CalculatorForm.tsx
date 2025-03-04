@@ -100,7 +100,7 @@ const CalculatorForm = ({ onComplete }: CalculatorFormProps) => {
         <div className="mb-4" key={field}>
           <Label htmlFor={field} className="block mb-2 text-sm font-medium">{label}</Label>
           <Select
-            value={value.toString()}
+            value={value}
             onValueChange={(newValue) => handleInputChange(category, field, newValue)}
           >
             <SelectTrigger id={field} className="w-full">
@@ -195,7 +195,7 @@ const CalculatorForm = ({ onComplete }: CalculatorFormProps) => {
               id={field}
               type="number"
               min={0}
-              value={value.toString()}
+              value={value !== null && value !== undefined ? value.toString() : '0'}
               onChange={(e) => handleInputChange(category, field, parseFloat(e.target.value) || 0)}
               className="pr-16 focus:input-focused"
             />

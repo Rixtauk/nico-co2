@@ -6,7 +6,8 @@ import EmailCapture from '@/components/EmailCapture';
 import ResultsView from '@/components/ResultsView';
 import { EmissionsResult, UserData } from '@/types/calculatorTypes';
 import { calculateEmissions, getDefaultCategoryData } from '@/utils/calculationUtils';
-import { toast } from '@/components/ui/sonner';
+import { toast } from '@/hooks/use-toast';
+import { Toaster } from '@/components/ui/sonner';
 
 const Index = () => {
   const [calculatorState, setCalculatorState] = useState<'form' | 'email' | 'results'>('form');
@@ -43,10 +44,17 @@ const Index = () => {
       }
 
       setCalculatorState('results');
-      toast.success('Results ready!');
+      toast({
+        title: "Success",
+        description: "Results ready!",
+      });
     } catch (error) {
       console.error('Error submitting email:', error);
-      toast.error('Something went wrong. Please try again.');
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive"
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -112,6 +120,9 @@ const Index = () => {
           <p className="mt-2">© {new Date().getFullYear()} CO₂ Calculator. All rights reserved.</p>
         </div>
       </footer>
+      
+      {/* Toaster component for notifications */}
+      <Toaster />
     </div>
   );
 };
